@@ -24,7 +24,7 @@ var products = [
         material: "Acero inoxidable",
     },
     {
-        id: 1,
+        id: 3,
         name: "Collar",
         description: "Este collar te ara ahogar",
         price: 20,
@@ -39,7 +39,7 @@ var products = [
 
     },
     {
-        id: 1,
+        id: 4,
         name: "Pendiente",
         description: "Un pendiente que tiene un diente",
         price: 5,
