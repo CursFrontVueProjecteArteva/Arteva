@@ -5,7 +5,7 @@ var products = [
         description: "Este anillo es magnificamente bonito",
         price: 10,
         type: "Anillos",
-        img: XXX,
+        img: "XXX",
         material: "Plata",
         size:  {
             size1: 14,
@@ -20,7 +20,7 @@ var products = [
         description: "Esta pulsera te hará volar",
         price: 15,
         type: "Pulseras",
-        img: XYX,
+        img: "XYX",
         material: "Acero inoxidable",
     },
     {
@@ -29,7 +29,7 @@ var products = [
         description: "Este collar te ara ahogar",
         price: 20,
         type: "Collares",
-        img: XXX,
+        img: "XXX",
         material: "Acero inoxidable",
         size:  {
             size1: 42,
@@ -44,7 +44,9 @@ var products = [
         description: "Un pendiente que tiene un diente",
         price: 5,
         type: "Pendientes",
-        img: XXX,
+        img: "XXX",
         material: "Oro y Plata",
     },
 ]
+
+var cart = [];
