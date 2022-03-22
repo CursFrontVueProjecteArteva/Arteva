@@ -20,7 +20,6 @@ function removeAllFromCart() {
 // Autor: Olegario Ballester . 18/03/2022
 function cartListOnes() {
     // El Array cartList esta declarado en data;
-   
      // ids es un array auxiliar para controlas los id's del carrito y ver si se repiten
      const ids = [];
    
@@ -66,6 +65,9 @@ function removeBuy(id) {
      
    }
 
+//DESCRIPTION: Decrease by  ONE to quantity
+// Autor: Olegario Ballester . 22/03/2022
+
 
    
 
@@ -78,4 +80,28 @@ function getProductByCategory(buscado) {
   console.table(productos);
   return productos;
 
+
+   function decreaseQuantityByOne(id) {
+    const producto = products.find((ele) => ele.id === id);
+    if (producto.cantidad === 1) {
+      removeBuy(id)
+      let index = cart.indexOf(producto.id);
+      cart.splice(index, 1);
+    } else {
+      producto.cantidad--;
+      producto.total = producto.price * producto.cantidad;
+      console.table(cartList);
+    };
+    
+  }
+
+//DESCRIPTION: Increase by ONE to quantity
+// Autor: Olegario Ballester . 22/03/2022
+function increaseQuantityByOne(id) {
+  const producto = products.find((ele) => ele.id === id);
+  producto.cantidad++;
+  producto["total"] = producto.price * producto.cantidad;
+  console.table(cartList);
+  
+}
 }
