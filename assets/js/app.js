@@ -67,3 +67,15 @@ function removeBuy(id) {
    }
 
 
+   
+
+// Función para filtros (anillos/collares/pendientes/pulseras)
+
+
+function getProductByCategory(buscado) {
+  const productos = products.filter(prod => prod.type == buscado);
+  console.log(products);
+  console.table(productos);
+  return productos;
+
+}
