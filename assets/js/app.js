@@ -68,6 +68,19 @@ function removeBuy(id) {
 //DESCRIPTION: Decrease by  ONE to quantity
 // Autor: Olegario Ballester . 22/03/2022
 
+
+   
+
+// Función para filtros (anillos/collares/pendientes/pulseras)
+
+
+function getProductByCategory(buscado) {
+  const productos = products.filter(prod => prod.type == buscado);
+  console.log(products);
+  console.table(productos);
+  return productos;
+
+
    function decreaseQuantityByOne(id) {
     const producto = products.find((ele) => ele.id === id);
     if (producto.cantidad === 1) {
@@ -89,5 +102,6 @@ function increaseQuantityByOne(id) {
   producto.cantidad++;
   producto["total"] = producto.price * producto.cantidad;
   console.table(cartList);
-  ;
+  
+}
 }
