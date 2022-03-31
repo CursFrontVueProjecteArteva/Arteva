@@ -2,6 +2,7 @@
 
 function addToCart(id) {
   cart.push(products.find((ele) => ele.id === id));
+  cartListOnes()
 }
 // console.log(cart);
 
@@ -32,7 +33,7 @@ function cartListOnes() {
       producto.total = producto.price * producto.cantidad;
     }
   });
-  console.table(cartList); //print
+  //console.table(cartList); //print
   return cartList;
 }
 

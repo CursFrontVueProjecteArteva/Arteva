@@ -4,6 +4,7 @@ const fragment = document.createDocumentFragment();
 
 document.addEventListener("DOMContentLoaded", () => {
   renderCards(products);
+  listenerEvents();
 });
 
 // Render all cards from data
@@ -30,25 +31,3 @@ function renderCards() {
   cards.appendChild(fragment);
 }
 
-//FEM CLICK A CARDS
-const cards = document.getElementById('cards')
-
-function addToCart(id) {
-  alert("add to cart " + id);
-}
-function listenerEvents(){
-  document.querySelectorAll(".cardProduct").forEach(function (element) {
-    element.addEventListener("click", function (e) {
-      var dataID = element.getAttribute("data-id");
-      //alert(dataID);
-      if (e.target.classList.contains("cardAdd") || e.target.classList.contains("fa-cart-plus")) {
-        addToCart(dataID);
-        e.stopPropagation();
-      }
-      // if (e.target.classList.contains("cardRemove") || e.target.classList.contains("fa-trash-alt") ) {
-      //   removeFromCart(dataID);
-      //   e.stopPropagation();
-      // }
-    });
-  });
-}
