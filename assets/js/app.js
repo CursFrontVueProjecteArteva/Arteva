@@ -1,3 +1,39 @@
+
+const categories= document.getElementById('categories')
+categories.addEventListener('click', e => {
+
+  console.log(categories);
+
+
+    if (e.target.classList.contains('prodAnillos')) { 
+      console.log("Anillos");       
+        cleanListProducts();
+        ProductByCategory=getProductsFromCategory("Anillos");        
+        pintarCardsProducts(ProductByCategory);
+     }
+     if (e.target.classList.contains('prodColgantes')) {
+        cleanListProducts();
+        ProductByCategory=getProductsFromCategory("Colgantes");               
+        pintarCardsProducts(ProductByCategory);
+     }
+     if (e.target.classList.contains('prodPendientes')) {
+        cleanListProducts();
+        ProductByCategory=getProductsFromCategory("Pendientes");               
+        pintarCardsProducts(ProductByCategory);
+     }
+     if (e.target.classList.contains('prodPulseras')) {
+      cleanListProducts();
+      ProductByCategory=getProductsFromCategory("Pulseras");               
+      pintarCardsProducts(ProductByCategory);
+   }
+     if (e.target.classList.contains('prodTots')) {
+        cleanListProducts();
+        pintarCardsProducts(products);
+     }
+
+});
+
+
 // Aqui farem les funcionalitats del carret
 
 function addToCart(id) {
@@ -92,3 +128,4 @@ function getProductByCategory(buscado) {
   console.table(productos);
   return productos;
 }
+
