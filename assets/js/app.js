@@ -1,14 +1,14 @@
 
-const categories= document.getElementById('categories')
+const categories= document.getElementById('tipo')
 categories.addEventListener('click', e => {
 
-  console.log(categories);
 
+//falta declarar getproductsfromcategory
 
     if (e.target.classList.contains('prodAnillos')) { 
-      console.log("Anillos");       
-        cleanListProducts();
-        ProductByCategory=getProductsFromCategory("Anillos");        
+        console.log("Anillos");       
+        //cleanListProducts();
+        ProductByCategory=getProductsFromCategory("Anillos"); 
         pintarCardsProducts(ProductByCategory);
      }
      if (e.target.classList.contains('prodColgantes')) {
