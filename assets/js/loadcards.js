@@ -1,10 +1,12 @@
 // Script to load de product card
 const templateCard = document.getElementById("template-card").content;
+const cards = document.getElementById('cards');
 const fragment = document.createDocumentFragment();
+
 
 document.addEventListener("DOMContentLoaded", () => {
   renderCards(products);
-  listenerEvents();
+  //listenerEvents();
 });
 
 // Render all cards from data
@@ -16,7 +18,7 @@ function renderCards() {
     templateCard.querySelector(".cardProduct").setAttribute("data-id", item.id);
 
     templateCard.querySelector(".cardAdd").setAttribute("id", item.id);
-    templateCard.querySelector(".cardAdd").setAttribute("card-id", item.id);
+    templateCard.querySelector(".cardAdd").setAttribute("data-id", item.id);
     // templateCard.querySelector('.cardRemove').setAttribute('id', item.id)
 
     templateCard.querySelector("img").setAttribute("src", item.img);
@@ -31,3 +33,7 @@ function renderCards() {
   cards.appendChild(fragment);
 }
 
+// Evento escuchar para añadir al carrito
+cards.addEventListener('click',e =>{
+  addCarrito(e)
+})

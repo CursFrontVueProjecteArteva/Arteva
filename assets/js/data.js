@@ -1,6 +1,6 @@
 var products = [
   {
-    id: '1',
+    id: 1,
     name: "Anillo turmalina rosa",
     description: "Anillo de plata engarzado con turmalina rosa hidrotermal",
     price: 45,
@@ -10,7 +10,7 @@ var products = [
     size: 16,
   },
   {
-    id: '2',
+    id: 2,
     name: "Anillo erizo plata",
     description: "Anillo de plata con forma de erizo",
     price: 25,
@@ -20,7 +20,7 @@ var products = [
     size: 14,
   },
   {
-    id: '3',
+    id: 3,
     name: "Anillo ópalo Australia",
     description: "Anillo de plata engarzado con ópalo azul de Australia",
     price: 55,
@@ -30,7 +30,7 @@ var products = [
     size: 18,
   },
   {
-    id: '4',
+    id: 4,
     name: "Colgante hoja plata",
     description: "Colgante grande, con forma de hoja, realizado en plata",
     price: 60,
