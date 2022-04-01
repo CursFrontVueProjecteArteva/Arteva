@@ -1,48 +1,70 @@
 // Aqui farem les funcionalitats del carret
 
+// Funciones para añadir al Cart
 function addToCart(id) {
   cart.push(products.find((ele) => ele.id === id));
-  cartListOnes()
 }
-// console.log(cart);
+
+const addCarrito = (e) => {
+  if (e.target.classList.contains("cardAdd")) {
+    setCarrito(e.target.getAttribute("data-id"));
+  }
+  e.stopPropagation();
+};
+
+const setCarrito = (objeto) => {
+  console.log(objeto);
+  const producto = {
+    id: objeto, //.querySelector(".cartAdd").dataset.id,
+    nombre: document.querySelectorAll(".nombre")[objeto].textContent,
+    precio: document.querySelectorAll(".precio")[objeto].textContent,
+    cantidad: 1,
+  };
+
+  if (cart.hasOwnProperty(producto.id)) {
+    producto.cantidad = cart[producto.id].cantidad + 1;
+  }
+  cart[producto.id] = { ...producto };
+  // pintarCarrito();
+};
 
 // función remove All from Card
 
 function removeAllFromCart() {
   cart.length = 0;
-  cartList.length = 0;
+  //cartList.length = 0;
   //console.log(cart);
 }
 
 //PROTOTYPE:  cartListOnes()
 //DESCRIPTION: A partir del arrar -cart- crea el array -cartList- crea la propiedad cantidad para ir sumando los elemntos repetidos.
 // Autor: Olegario Ballester . 18/03/2022
-function cartListOnes() {
-  // El Array cartList esta declarado en data;
-  // ids es un array auxiliar para controlas los id's del carrito y ver si se repiten
-  const ids = [];
+// function cartListOnes() {
+//   // El Array cartList esta declarado en data;
+//   // ids es un array auxiliar para controlas los id's del carrito y ver si se repiten
+//   const ids = [];
 
-  cart.forEach((producto) => {
-    if (ids.includes(producto.id) === false) {
-      ids.push(producto.id);
-      producto.cantidad = 1;
-      producto.total = producto.price * producto.cantidad;
-      cartList.push(producto);
-    } else {
-      producto.cantidad += 1;
-      producto.total = producto.price * producto.cantidad;
-    }
-  });
-  //console.table(cartList); //print
-  return cartList;
-}
+//   cart.forEach((producto) => {
+//     if (ids.includes(producto.id) === false) {
+//       ids.push(producto.id);
+//       producto.cantidad = 1;
+//       producto.total = producto.price * producto.cantidad;
+//       cartList.push(producto);
+//     } else {
+//       producto.cantidad += 1;
+//       producto.total = producto.price * producto.cantidad;
+//     }
+//   });
+//   //console.table(cartList); //print
+//   return cartList;
+// }
 
 //PROTOTYPE:   addTotalcart()
 //DESCRIPTION:  Calculo del total del carrito
 // Autor: Olegario Ballester . 18/03/2022
 
 function addTotalCart() {
-  const totalCart = cartList
+  const totalCart = cart
     .reduce((suma, ele) => (suma += ele.total), 0)
     .toFixed(3);
   console.log(`El total de la compra es ${totalCart} €`); // print
@@ -53,13 +75,13 @@ function addTotalCart() {
 // Autor: Olegario Ballester . 18/03/2022
 function removeBuy(id) {
   // let cartList = cartListOnes();
-  const index = cartList.findIndex((ele) => ele.id === id);
+  const index = cart.findIndex((ele) => ele.id === id);
   if (index !== -1) {
-    cartList.splice(index, 1);
+    cart.splice(index, 1);
   }
   addTotalCart();
-  console.table(cartList);
-  return cartList;
+  console.table(cart);
+  return cart;
 }
 
 //DESCRIPTION: Decrease by  ONE to quantity
@@ -73,7 +95,7 @@ function decreaseQuantityByOne(id) {
   } else {
     producto.cantidad--;
     producto.total = producto.price * producto.cantidad;
-    console.table(cartList);
+    console.table(cart);
   }
 }
 
