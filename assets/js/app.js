@@ -1,47 +1,79 @@
 // Aqui farem les funcionalitats del carret
 
-function addToCart(id) {
-  cart.push(products.find((ele) => ele.id === id));
-}
-// console.log(cart);
+// Funciones para añadir al Cart
+// function addToCart(id) {
+//   cart.push(products.find((ele) => ele.id === id));
+// }
+
+const addToCart = (e) => {
+  if (e.target.classList.contains("cardAdd")) {
+    // buscamos el id del boton Add clicked
+    let id = +e.target.getAttribute("data-id");
+    // Con ese id buscamos el elemento en products
+    let addProduct = products.find((ele) => ele.id === id);
+
+    // 1.-Si el carrito esta vacio => subimos el producto al carrito
+
+    if (cart.length < 1) {
+      cart.push(addProduct);
+      addProduct.cantidad = 1;
+      addProduct.subTotal = addProduct.cantidad * addProduct.price;
+    } else {
+      // Si no lo esta, buscamos el elemnto: si no lo encuentra lo sube, y si lo encuentra aumenta la cantidad
+
+      let index = cart.indexOf(addProduct);
+      if (index == -1) {   // no lo encuentra
+        cart.push(addProduct);
+        addProduct.cantidad = 1;
+        addProduct.subTotal = addProduct.cantidad * addProduct.price;
+      } else { // silo ha encontrado
+        addProduct.cantidad = addProduct.cantidad + 1;
+        addProduct.subTotal = addProduct.cantidad * addProduct.price;
+      }
+    }
+
+    console.table(cart);
+  }
+  e.stopPropagation();
+};
 
 // función remove All from Card
 
 function removeAllFromCart() {
   cart.length = 0;
-  cartList.length = 0;
+  //cartList.length = 0;
   //console.log(cart);
 }
 
 //PROTOTYPE:  cartListOnes()
 //DESCRIPTION: A partir del arrar -cart- crea el array -cartList- crea la propiedad cantidad para ir sumando los elemntos repetidos.
 // Autor: Olegario Ballester . 18/03/2022
-function cartListOnes() {
-  // El Array cartList esta declarado en data;
-  // ids es un array auxiliar para controlas los id's del carrito y ver si se repiten
-  const ids = [];
+// function cartListOnes() {
+//   // El Array cartList esta declarado en data;
+//   // ids es un array auxiliar para controlas los id's del carrito y ver si se repiten
+//   const ids = [];
 
-  cart.forEach((producto) => {
-    if (ids.includes(producto.id) === false) {
-      ids.push(producto.id);
-      producto.cantidad = 1;
-      producto.total = producto.price * producto.cantidad;
-      cartList.push(producto);
-    } else {
-      producto.cantidad += 1;
-      producto.total = producto.price * producto.cantidad;
-    }
-  });
-  console.table(cartList); //print
-  return cartList;
-}
-
+//   cart.forEach((producto) => {
+//     if (ids.includes(producto.id) === false) {
+//       ids.push(producto.id);
+//       producto.cantidad = 1;
+//       producto.total = producto.price * producto.cantidad;
+//       cartList.push(producto);
+//     } else {
+//       producto.cantidad += 1;
+//       producto.total = producto.price * producto.cantidad;
+//     }
+//   });
+//   //console.table(cartList); //print
+//   return cartList;
+// }
+// ---------------------------------------------------------------------------------------------------
 //PROTOTYPE:   addTotalcart()
 //DESCRIPTION:  Calculo del total del carrito
 // Autor: Olegario Ballester . 18/03/2022
 
 function addTotalCart() {
-  const totalCart = cartList
+  const totalCart = cart
     .reduce((suma, ele) => (suma += ele.total), 0)
     .toFixed(3);
   console.log(`El total de la compra es ${totalCart} €`); // print
@@ -52,13 +84,13 @@ function addTotalCart() {
 // Autor: Olegario Ballester . 18/03/2022
 function removeBuy(id) {
   // let cartList = cartListOnes();
-  const index = cartList.findIndex((ele) => ele.id === id);
+  const index = cart.findIndex((ele) => ele.id === id);
   if (index !== -1) {
-    cartList.splice(index, 1);
+    cart.splice(index, 1);
   }
   addTotalCart();
-  console.table(cartList);
-  return cartList;
+  console.table(cart);
+  return cart;
 }
 
 //DESCRIPTION: Decrease by  ONE to quantity
@@ -72,7 +104,7 @@ function decreaseQuantityByOne(id) {
   } else {
     producto.cantidad--;
     producto.total = producto.price * producto.cantidad;
-    console.table(cartList);
+    console.table(cart);
   }
 }
 
