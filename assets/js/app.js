@@ -33,6 +33,7 @@ const addToCart = (e) => {
     }
 
     console.table(cart);
+    // pintarCarrito()
   }
   e.stopPropagation();
 };
@@ -127,7 +128,7 @@ function getProductByCategory(buscado) {
 
 const templateCarrito = document.getElementById('template-carrito').content
 const templateFooter = document.getElementById('template-footer').content
-const fragment = document.createDocumentFragment()
+// const fragment = document.createDocumentFragment()
 
 //FUNCION PINTA template-CARRITO
 
@@ -135,6 +136,7 @@ const pintarCarrito = () => {
   items.innerHTML = ''
 
   Object.values(carrito).forEach(producto => {
+    
       templateCarrito.querySelector('th').textContent = producto.id
       templateCarrito.querySelectorAll('td')[0].textContent = producto.title
       templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad
