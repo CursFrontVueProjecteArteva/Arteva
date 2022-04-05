@@ -1,32 +1,38 @@
 // Aqui farem les funcionalitats del carret
 
 // Funciones para añadir al Cart
-function addToCart(id) {
-  cart.push(products.find((ele) => ele.id === id));
-}
+// function addToCart(id) {
+//   cart.push(products.find((ele) => ele.id === id));
+// }
 
-const addCarrito = (e) => {
+const addToCart = (e) => {
   if (e.target.classList.contains("cardAdd")) {
-    // setCarrito(+e.target.getAttribute("data-id"));
+    // buscamos el id del boton Add clicked
     let id = +e.target.getAttribute("data-id");
+    // Con ese id buscamos el elemento en products
     let addProduct = products.find((ele) => ele.id === id);
-    let ids = [];
-    cartList.push(addProduct);
 
-    cartList.forEach((ele) => {
-      if (!ids.includes(ele.id)) {
-        ids.push(ele.id);
-        cart.push(ele);
-        ele.cantidad = 1;
-        ele.total = ele.cantidad * ele.price;
-      } else {
-        ele.cantidad++;
-        ele.total = ele.cantidad * ele.price;
+    // 1.-Si el carrito esta vacio => subimos el producto al carrito
+
+    if (cart.length < 1) {
+      cart.push(addProduct);
+      addProduct.cantidad = 1;
+      addProduct.subTotal = addProduct.cantidad * addProduct.price;
+    } else {
+      // Si no lo esta, buscamos el elemnto: si no lo encuentra lo sube, y si lo encuentra aumenta la cantidad
+
+      let index = cart.indexOf(addProduct);
+      if (index == -1) {   // no lo encuentra
+        cart.push(addProduct);
+        addProduct.cantidad = 1;
+        addProduct.subTotal = addProduct.cantidad * addProduct.price;
+      } else { // silo ha encontrado
+        addProduct.cantidad = addProduct.cantidad + 1;
+        addProduct.subTotal = addProduct.cantidad * addProduct.price;
       }
-    });
-    console.log(cart);
-    // console.log(cartList);
-    // console.log(ids);
+    }
+
+    console.table(cart);
   }
   e.stopPropagation();
 };
@@ -61,7 +67,7 @@ function removeAllFromCart() {
 //   //console.table(cartList); //print
 //   return cartList;
 // }
-
+// ---------------------------------------------------------------------------------------------------
 //PROTOTYPE:   addTotalcart()
 //DESCRIPTION:  Calculo del total del carrito
 // Autor: Olegario Ballester . 18/03/2022

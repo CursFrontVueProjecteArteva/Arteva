@@ -35,5 +35,5 @@ function renderCards() {
 
 // Evento escuchar para añadir al carrito
 cards.addEventListener('click',e =>{
-  addCarrito(e)
+  addToCart(e)
 })

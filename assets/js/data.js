@@ -127,3 +127,4 @@ var products = [
 
 var cart = [];
 var cartList = [];
+var idsCart = [];
