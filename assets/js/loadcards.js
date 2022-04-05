@@ -27,7 +27,7 @@ function renderCards() {
     templateCard.querySelector(".talla").textContent = `Talla ${item.size}`;
     templateCard.querySelector(".precio").textContent = `${item.price} €`;
     const clone = templateCard.cloneNode(true);
-    // se guarda en memoria, de momento no se printa
+    // se guarda en memoria, de momento no se printar
     fragment.appendChild(clone);
   });
   cards.appendChild(fragment);

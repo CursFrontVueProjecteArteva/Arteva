@@ -7,25 +7,28 @@ function addToCart(id) {
 
 const addCarrito = (e) => {
   if (e.target.classList.contains("cardAdd")) {
-    setCarrito(e.target.getAttribute("data-id"));
+    // setCarrito(+e.target.getAttribute("data-id"));
+    let id = +e.target.getAttribute("data-id");
+    let addProduct = products.find((ele) => ele.id === id);
+    let ids = [];
+    cartList.push(addProduct);
+
+    cartList.forEach((ele) => {
+      if (!ids.includes(ele.id)) {
+        ids.push(ele.id);
+        cart.push(ele);
+        ele.cantidad = 1;
+        ele.total = ele.cantidad * ele.price;
+      } else {
+        ele.cantidad++;
+        ele.total = ele.cantidad * ele.price;
+      }
+    });
+    console.log(cart);
+    // console.log(cartList);
+    // console.log(ids);
   }
   e.stopPropagation();
-};
-
-const setCarrito = (objeto) => {
-  console.log(objeto);
-  const producto = {
-    id: objeto, //.querySelector(".cartAdd").dataset.id,
-    nombre: document.querySelectorAll(".nombre")[objeto].textContent,
-    precio: document.querySelectorAll(".precio")[objeto].textContent,
-    cantidad: 1,
-  };
-
-  if (cart.hasOwnProperty(producto.id)) {
-    producto.cantidad = cart[producto.id].cantidad + 1;
-  }
-  cart[producto.id] = { ...producto };
-  // pintarCarrito();
 };
 
 // función remove All from Card
