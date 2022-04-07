@@ -1,19 +1,19 @@
 
 const categories= document.getElementById('tipo')
 categories.addEventListener('click', e => {
+  
 
-
-//falta declarar getproductsfromcategory
+//falta declarar  var getproductsfromcategory
 
     if (e.target.classList.contains('prodAnillos')) { 
         console.log("Anillos");       
         //cleanListProducts();
-        ProductByCategory=getProductsFromCategory("Anillos"); 
+        ProductByCategory=getProductByCategory("Anillos"); 
         pintarCardsProducts(ProductByCategory);
      }
      if (e.target.classList.contains('prodColgantes')) {
         cleanListProducts();
-        ProductByCategory=getProductsFromCategory("Colgantes");               
+        ProductByCategory=getProductByCategory("Colgantes");               
         pintarCardsProducts(ProductByCategory);
      }
      if (e.target.classList.contains('prodPendientes')) {
