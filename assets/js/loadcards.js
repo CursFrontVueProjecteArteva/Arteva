@@ -37,3 +37,9 @@ function renderCards() {
 cards.addEventListener('click',e =>{
   addToCart(e)
 })
+
+//Evento filtro de categorias
+
+/* addEventListener('click', e => {
+  getProductByCategory(e)
+}) */
