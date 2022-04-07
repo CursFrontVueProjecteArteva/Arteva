@@ -22,18 +22,20 @@ const addToCart = (e) => {
       // Si no lo esta, buscamos el elemnto: si no lo encuentra lo sube, y si lo encuentra aumenta la cantidad
 
       let index = cart.indexOf(addProduct);
-      if (index == -1) {   // no lo encuentra
+      if (index == -1) {
+        // no lo encuentra
         cart.push(addProduct);
         addProduct.cantidad = 1;
         addProduct.subTotal = addProduct.cantidad * addProduct.price;
-      } else { // silo ha encontrado
+      } else {
+        // silo ha encontrado
         addProduct.cantidad = addProduct.cantidad + 1;
         addProduct.subTotal = addProduct.cantidad * addProduct.price;
       }
     }
 
     console.table(cart);
-    // pintarCarrito()
+    pintarCarrito();
   }
   e.stopPropagation();
 };
@@ -74,11 +76,10 @@ function removeAllFromCart() {
 // Autor: Olegario Ballester . 18/03/2022
 
 function addTotalCart() {
-  const totalCart = cart
-    .reduce((suma, ele) => (suma += ele.total), 0)
-    .toFixed(3);
+  const totalCart = cart.reduce((suma, ele) => (suma += ele.subTotal), 0);
   console.log(`El total de la compra es ${totalCart} €`); // print
-  return totalCart;
+  document.getElementById("totalCart").innerText = totalCart + " €";
+  return totalCart ;
 }
 
 //DESCRIPTION: Remove de object with the id.
@@ -126,80 +127,98 @@ function getProductByCategory(buscado) {
   return productos;
 }
 
-const templateCarrito = document.getElementById('template-carrito').content
-const templateFooter = document.getElementById('template-footer').content
+const templateCarrito = document.getElementById("template-carrito").content;
+const templateFooter = document.getElementById("template-footer").content;
 // const fragment = document.createDocumentFragment()
 
-//FUNCION PINTA template-CARRITO
-
-const pintarCarrito = () => {
-  items.innerHTML = ''
-
-  Object.values(carrito).forEach(producto => {
-    
-      templateCarrito.querySelector('th').textContent = producto.id
-      templateCarrito.querySelectorAll('td')[0].textContent = producto.title
-      templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad
-      templateCarrito.querySelector('span').textContent = producto.precio * producto.cantidad
-      
-      //botones
-      templateCarrito.querySelector('.btn-info').dataset.id = producto.id
-      templateCarrito.querySelector('.btn-danger').dataset.id = producto.id
-
-      const clone = templateCarrito.cloneNode(true)
-      fragment.appendChild(clone)
-  })
-  items.appendChild(fragment)
-
-  pintarFooter()
-}
-// pintar carrito deberia quedar asi:
+//FUNCION PINTA template-CARRITO (ANTIUGUA, mejor sin Object.)
 
 // const pintarCarrito = () => {
-//   const items = document.getElementById('items');
-//   items.innerHTML ='';
+//   items.innerHTML = ''
 
-//   cart.forEach(item => {
-//       templateCarrito.querySelector('th').textContent = item.id
-//       templateCarrito.querySelectorAll('td')[0].textContent = item.name
-//       templateCarrito.querySelectorAll('td')[1].textContent = item.price
-//       templateCarrito.querySelectorAll('td')[2].textContent = item.quantity
-//       templateCarrito.querySelector('span').textContent = item.subtotal
+//   Object.values(carrito).forEach(producto => {
+
+//       templateCarrito.querySelector('th').textContent = producto.id
+//       templateCarrito.querySelectorAll('td')[0].textContent = producto.title
+//       templateCarrito.querySelectorAll('td')[1].textContent = producto.cantidad
+//       templateCarrito.querySelector('span').textContent = producto.precio * producto.cantidad
+
+//       //botones
+//       templateCarrito.querySelector('.btn-info').dataset.id = producto.id
+//       templateCarrito.querySelector('.btn-danger').dataset.id = producto.id
+
 //       const clone = templateCarrito.cloneNode(true)
 //       fragment.appendChild(clone)
 //   })
 //   items.appendChild(fragment)
+
+//   pintarFooter()
 // }
+// pintar carrito deberia quedar asi:
+
+const pintarCarrito = () => {
+  const items = document.getElementById("itemsModal");
+  items.innerHTML = "";
+
+  // console.log("ESTOY AQUI:" + cart);
+
+  cart.forEach((items) => {
+
+    templateCarrito.querySelector("th").textContent = items.id;
+    templateCarrito.querySelectorAll("td")[0].textContent = items.name;
+    templateCarrito.querySelectorAll("td")[1].textContent = items.cantidad;
+    templateCarrito.querySelectorAll("td")[2].textContent = items.price;
+    templateCarrito.querySelector("span").textContent = items.price * items.cantidad;
+
+    //botone
+    // templateCarrito.querySelector(".btn-info").dataset.id = items.id;
+    //botone
+    // templateCarrito.querySelector(".btn-danger").dataset.id = items.id;
+
+    const clone = templateCarrito.cloneNode(true);
+    fragment.appendChild(clone);
+  });
+  items.appendChild(fragment);
+
+  //pintarFooter();
+  addTotalCart();
+  
+};
+
+
 
 //FUNCION PINTA template-FOOTER
 
-const pintarFooter = () => {
-  footer.innerHTML = ''
-  
-  if (Object.keys(carrito).length === 0) {
-      footer.innerHTML = `
-      <th scope="row" colspan="5">Carrito vacío con innerHTML</th>
-      `
-      return
-  }
-  
-  // sumar cantidad y sumar totales
-  const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0)
-  const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio ,0)
-  // console.log(nPrecio)
+// const pintarFooter = () => {
+//   footer.innerHTML = "";
 
-  templateFooter.querySelectorAll('td')[0].textContent = nCantidad
-  templateFooter.querySelector('span').textContent = nPrecio
+//   if (Object.keys(carrito).length === 0) {
+//     footer.innerHTML = `<th scope="row" colspan="5">Carrito vacío con innerHTML</th>`;
+//     return;
+//   }
 
-  const clone = templateFooter.cloneNode(true)
-  fragment.appendChild(clone)
+//   // sumar cantidad y sumar totales
+//   const nCantidad = Object.values(carrito).reduce(
+//     (acc, { cantidad }) => acc + cantidad,
+//     0
+//   );
+//   const nPrecio = Object.values(carrito).reduce(
+//     (acc, { cantidad, precio }) => acc + cantidad * precio,
+//     0
+//   );
+//   // console.log(nPrecio)
 
-  footer.appendChild(fragment)
+//   templateFooter.querySelectorAll("td")[0].textContent = nCantidad;
+//   templateFooter.querySelector("span").textContent = nPrecio;
 
-  const boton = document.querySelector('#vaciar-carrito')
-  boton.addEventListener('click', () => {
-      carrito = {}
-      pintarCarrito()
-  })
+//   const clone = templateFooter.cloneNode(true);
+//   fragment.appendChild(clone);
 
-}
+//   footer.appendChild(fragment);
+
+//   const boton = document.querySelector("#vaciar-carrito");
+//   boton.addEventListener("click", () => {
+//     carrito = {};
+//     pintarCarrito();
+//   });
+// };
