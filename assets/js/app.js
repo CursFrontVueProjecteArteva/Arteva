@@ -9,26 +9,26 @@ categories.addEventListener('click', e => {
         console.log("Anillos");       
         //cleanListProducts();
         ProductByCategory=getProductByCategory("Anillos"); 
-        pintarCardsProducts(ProductByCategory);
+        renderCards(ProductByCategory);
      }
      if (e.target.classList.contains('prodColgantes')) {
         cleanListProducts();
         ProductByCategory=getProductByCategory("Colgantes");               
-        pintarCardsProducts(ProductByCategory);
+        renderCards(ProductByCategory);
      }
      if (e.target.classList.contains('prodPendientes')) {
         cleanListProducts();
         ProductByCategory=getProductsFromCategory("Pendientes");               
-        pintarCardsProducts(ProductByCategory);
+        renderCards(ProductByCategory);
      }
      if (e.target.classList.contains('prodPulseras')) {
       cleanListProducts();
       ProductByCategory=getProductsFromCategory("Pulseras");               
-      pintarCardsProducts(ProductByCategory);
+      renderCards(ProductByCategory);
    }
      if (e.target.classList.contains('prodTots')) {
         cleanListProducts();
-        pintarCardsProducts(products);
+        renderCards(products);
      }
 
 });
