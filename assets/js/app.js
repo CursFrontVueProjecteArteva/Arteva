@@ -171,7 +171,7 @@ function getProductByCategory(buscado) {
   return productos;
 }
 
-<<<<<<< HEAD
+
 const templateCarrito = document.getElementById("template-carrito").content;
 const templateFooter = document.getElementById("template-footer").content;
 // const fragment = document.createDocumentFragment()
@@ -267,7 +267,3 @@ const pintarCarrito = () => {
 //     pintarCarrito();
 //   });
 // };
-=======
-
-
->>>>>>> 734be3712c33bed9db290ed5b218cd25c9f94d2b
