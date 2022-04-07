@@ -15,12 +15,12 @@ categories.addEventListener('click', e => {
      }
      if (e.target.classList.contains('prodPendientes')) {
         cleanListProducts();
-        ProductByCategory=getProductsFromCategory("Pendientes");               
+        ProductByCategory=getProductByCategory("Pendientes");               
         renderCards(ProductByCategory);
      }
      if (e.target.classList.contains('prodPulseras')) {
       cleanListProducts();
-      ProductByCategory=getProductsFromCategory("Pulseras");               
+      ProductByCategory=getProductByCategory("Pulseras");               
       renderCards(ProductByCategory);
    }
      if (e.target.classList.contains('prodTots')) {
@@ -29,6 +29,17 @@ categories.addEventListener('click', e => {
      }
 
 });
+
+// Limpiar lista de profuctos 
+
+
+function cleanListProducts(){
+  const cardsprint = document.querySelector('#cards');
+  console.log(cardsprint.children);
+  while (cardsprint.firstChild) {
+      cardsprint.removeChild(cardsprint.firstChild);
+  }
+}
 
 
 // Aqui farem les funcionalitats del carret
