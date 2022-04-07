@@ -2,9 +2,6 @@
 const categories= document.getElementById('tipo')
 categories.addEventListener('click', e => {
   
-
-//falta declarar  var getproductsfromcategory
-
     if (e.target.classList.contains('prodAnillos')) { 
         console.log("Anillos");       
         //cleanListProducts();
@@ -161,4 +158,6 @@ function getProductByCategory(buscado) {
   console.table(productos);
   return productos;
 }
+
+
 
