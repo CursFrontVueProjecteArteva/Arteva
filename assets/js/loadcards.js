@@ -2,6 +2,7 @@
 const templateCard = document.getElementById("template-card").content;
 const cards = document.getElementById('cards');
 const fragment = document.createDocumentFragment();
+const trash = document.querySelector('.fa-trash-alt');
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -43,3 +44,8 @@ cards.addEventListener('click',e =>{
 /* addEventListener('click', e => {
   getProductByCategory(e)
 }) */
+
+trash.addEventListener('click', e =>{
+  removeAllFromCart()
+  pintarCarrito()
+})
