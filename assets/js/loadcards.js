@@ -1,14 +1,30 @@
 // Script to load de product card
 const templateCard = document.getElementById("template-card").content;
-const cards = document.getElementById('cards');
+const cards = document.getElementById("cards");
 const fragment = document.createDocumentFragment();
-const trash = document.querySelector('.fa-trash-alt');
-
+const trash = document.querySelector(".fa-trash-alt");
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderCards(products);
+  recuperaDatos(products);
   //listenerEvents();
 });
+
+const recuperaDatos = () => {
+  // url (required), options (optional)
+  fetch("http://localhost:3000/products")
+    .then((respuesta) => {
+      return respuesta.json();
+    })
+    .then((resultado) => {
+      products = resultado;
+      renderCards(products);
+    })
+  .catch(function (err) {
+    document.body.innerHTML = "La base de datos está caída, estamos trabajando para solucionar el error."
+    console.log("No funciono.");
+    
+    });
+};
 
 // Render all cards from data
 function renderCards() {
@@ -35,9 +51,9 @@ function renderCards() {
 }
 
 // Evento escuchar para añadir al carrito
-cards.addEventListener('click',e =>{
-  addToCart(e)
-})
+cards.addEventListener("click", (e) => {
+  addToCart(e);
+});
 
 //Evento filtro de categorias
 
@@ -45,7 +61,7 @@ cards.addEventListener('click',e =>{
   getProductByCategory(e)
 }) */
 
-trash.addEventListener('click', e =>{
-  removeAllFromCart()
-  pintarCarrito()
-})
+trash.addEventListener("click", (e) => {
+  removeAllFromCart();
+  pintarCarrito();
+});

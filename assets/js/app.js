@@ -1,3 +1,7 @@
+const checkout= document.getElementById('btnCheck')
+checkout.addEventListener('click', e => {
+  checkoutCarrito()
+});
 
 const categories= document.getElementById('tipo')
 categories.addEventListener('click', e => {
@@ -267,3 +271,16 @@ const pintarCarrito = () => {
 //     pintarCarrito();
 //   });
 // };
+
+
+//hacer una variable que guarde el var carrito=datos;
+
+const checkoutCarrito = () => {
+
+  document.body.innerHTML = "funciono"
+
+  fetch('http://localhost:3000/products')
+
+  
+
+};
